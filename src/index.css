@@ -12,3 +12,20 @@ img{
     margin: 0 auto;
     display: block;
 }
+.cart-item{
+    background-color: rgb(110, 155, 155);
+    color: black;
+    padding: 0.5rem;
+    max-width: 400px;
+    margin: 0.5rem 0;
+}
+.cart-container{
+    background-color: lightblue;
+    padding: 1rem;
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+}
+.cart-close{
+    display: none;
+}

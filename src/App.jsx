@@ -2,12 +2,14 @@ import { useState, useEffect } from 'react'
 import CategoriesFilter from './components/CategoriesFilter'
 import CardContenitor from './components/CardContenitor'
 import Search from './components/Search'
+import Carrello from './components/Carrello'
 
 function App() {
   const [categories, setCategories] = useState([])
   const [prodotti, setProdotti] = useState([])
   const [filter, setFilter] = useState([])
   const [category, setCategory] = useState("electronics")
+  const [cart, setCart] = useState([])
   useEffect(() => {
     async function getDataCategories(){
       try{
@@ -49,15 +51,29 @@ function App() {
     })
     setFilter(filteredProducts)
   }
+  function handleAdding(id){
+    let cartUpdate = prodotti.filter(item => {
+      if(item.id === id) {
+        setCart([item, ...cart])
+      }
+    })
+  }
+  function removeItem(id){
+    let newCart = cart.filter(item => {
+      if(item.id != id){return true}
+    })
+    setCart(newCart)
+  }
 
   return (
     <>
+      <Carrello cart={cart} removeItem={removeItem}></Carrello>
       <h2>Categorie prodotti</h2>
       <CategoriesFilter categories={categories} handleFilter={handleFilter} setCategory={setCategory}></CategoriesFilter>
       <Search handleSearch={handleSearch}></Search>
       <h1>Prodotti:</h1>
       <p>Risultati trovati {filter.length}</p>
-      {filter.length === 0 ? <p>Nessun prodotto trovato</p> : <CardContenitor prodotti={filter}></CardContenitor>}
+      {filter.length === 0 ? <p>Nessun prodotto trovato</p> : <CardContenitor prodotti={filter} handleAdding={handleAdding}></CardContenitor>}
     </>
   )
 }
