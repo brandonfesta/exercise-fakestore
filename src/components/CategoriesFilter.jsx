@@ -6,6 +6,7 @@ export default function CategoriesFilter({categories, handleFilter, setCategory}
     ))
     return (
         <div>
+            <button onClick={() => handleFilter("tutti")}>Tutti</button>
             {categoriesButtons}
         </div>
     )

@@ -35,13 +35,17 @@ function App() {
 
   function handleFilter(category){
     let filteredProducts = prodotti.filter(item => {
-      if(item.category === category) return true
+      if(category === "tutti") { 
+        return true
+      } else if(item.category === category){ 
+        return true
+      }
     })
     setFilter(filteredProducts)
   }
   function handleSearch(text){
     let filteredProducts = prodotti.filter(item => {
-      if(item.title.toLowerCase().includes(text) && item.category === category) return true
+      if(item.title.toLowerCase().includes(text.toLowerCase()) && item.category === category) return true
     })
     setFilter(filteredProducts)
   }
@@ -52,7 +56,8 @@ function App() {
       <CategoriesFilter categories={categories} handleFilter={handleFilter} setCategory={setCategory}></CategoriesFilter>
       <Search handleSearch={handleSearch}></Search>
       <h1>Prodotti:</h1>
-      <CardContenitor prodotti={filter}></CardContenitor>
+      <p>Risultati trovati {filter.length}</p>
+      {filter.length === 0 ? <p>Nessun prodotto trovato</p> : <CardContenitor prodotti={filter}></CardContenitor>}
     </>
   )
 }
