@@ -1,0 +1,14 @@
+body{
+    background-color: skyblue;
+}
+.card{
+    background-color: white;
+    margin: 1.5rem;
+    max-width: 600px;
+    padding: 1rem;
+}
+img{
+    width: 150px;
+    margin: 0 auto;
+    display: block;
+}
