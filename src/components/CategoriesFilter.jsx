@@ -1,8 +1,8 @@
 import FiltersButton from "./FilterButton"
 
-export default function CategoriesFilter({categories, handleFilter}){
+export default function CategoriesFilter({categories, handleFilter, setCategory}){
     let categoriesButtons = categories.map(category=>(
-        <FiltersButton category={category} handleFilter={handleFilter}></FiltersButton>
+        <FiltersButton category={category} handleFilter={handleFilter} setCategory={setCategory}></FiltersButton>
     ))
     return (
         <div>

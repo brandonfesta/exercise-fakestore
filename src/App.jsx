@@ -7,6 +7,7 @@ function App() {
   const [categories, setCategories] = useState([])
   const [prodotti, setProdotti] = useState([])
   const [filter, setFilter] = useState([])
+  const [category, setCategory] = useState("electronics")
   useEffect(() => {
     async function getDataCategories(){
       try{
@@ -40,7 +41,7 @@ function App() {
   }
   function handleSearch(text){
     let filteredProducts = prodotti.filter(item => {
-      if(item.title.toLowerCase().includes(text)) return true
+      if(item.title.toLowerCase().includes(text) && item.category === category) return true
     })
     setFilter(filteredProducts)
   }
@@ -48,7 +49,7 @@ function App() {
   return (
     <>
       <h2>Categorie prodotti</h2>
-      <CategoriesFilter categories={categories} handleFilter={handleFilter}></CategoriesFilter>
+      <CategoriesFilter categories={categories} handleFilter={handleFilter} setCategory={setCategory}></CategoriesFilter>
       <Search handleSearch={handleSearch}></Search>
       <h1>Prodotti:</h1>
       <CardContenitor prodotti={filter}></CardContenitor>
