@@ -2,7 +2,7 @@ import Product from "./Product"
 
 export default function CardContenitor({prodotti}){
     let products = prodotti.map(product=>(
-        <Product product={product}></Product>
+        <Product product={product} key={product.id}></Product>
     ))
     return(
         <div>

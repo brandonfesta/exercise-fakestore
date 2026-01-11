@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import CategoriesFilter from './components/CategoriesFilter'
 import CardContenitor from './components/CardContenitor'
+import Search from './components/Search'
 
 function App() {
   const [categories, setCategories] = useState([])
@@ -37,11 +38,18 @@ function App() {
     })
     setFilter(filteredProducts)
   }
+  function handleSearch(text){
+    let filteredProducts = prodotti.filter(item => {
+      if(item.title.toLowerCase().includes(text)) return true
+    })
+    setFilter(filteredProducts)
+  }
 
   return (
     <>
       <h2>Categorie prodotti</h2>
       <CategoriesFilter categories={categories} handleFilter={handleFilter}></CategoriesFilter>
+      <Search handleSearch={handleSearch}></Search>
       <h1>Prodotti:</h1>
       <CardContenitor prodotti={filter}></CardContenitor>
     </>
